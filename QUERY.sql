@@ -140,8 +140,46 @@ FROM
 -- Concepts used: LEFT JOIN / FULL JOIN
 -- =========================================================================
 SELECT
-    u.user_id,
-    u.full_name,
-    b.booking_id
-FROM Users AS u
-LEFT JOIN Bookings AS b ON u.user_id = b.user_id;
+  u.user_id,
+  u.full_name,
+  b.booking_id
+FROM
+  Users AS u
+  LEFT JOIN Bookings AS b ON u.user_id = b.user_id;
+
+-- =========================================================================
+-- QUERY 6
+-- Find all ticket bookings where the total cost is strictly higher than the average cost of all ticket bookings.
+-- Concepts used: Subquery, Aggregation (AVG)
+-- =========================================================================
+SELECT
+  booking_id,
+  match_id,
+  total_cost
+FROM
+  Bookings
+WHERE
+  total_cost > (
+    SELECT
+      AVG(total_cost)
+    FROM
+      Bookings
+  );
+
+-- =========================================================================
+-- QUERY 7
+-- Retrieve the top 2 most expensive matches sorted by base ticket price, skipping the absolute highest premium match.
+-- Concepts used: ORDER BY, LIMIT, OFFSET (pagination)
+-- =========================================================================
+SELECT
+  match_id,
+  fixture,
+  base_ticket_price
+FROM
+  Matches
+ORDER BY
+  base_ticket_price DESC
+LIMIT
+  2
+OFFSET
+  1;
