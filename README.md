@@ -155,3 +155,9 @@ This transactional table records individual ticket purchases by linking users to
 | --- | --- | --- |
 | 103 | Bayern Munich vs PSG | 130 |
 | 102 | Man City vs Liverpool | 120 |
+
+---
+
+## Author
+
+Fakhrul Hasan
